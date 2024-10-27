@@ -102,14 +102,17 @@ void setup() {
 
   // Set GPIO pin 15 to output and toggle it every 650 ms
 
-  const uint8_t kDigitalOutputPin = 15;
   const uint8_t led_gpio = 25;
+  EvenBlinker hbLED(25, 1000);   // Enabled by default
+  hbLED.set_enabled(true);
+
+  const uint8_t kDigitalOutputPin = 15;
   const unsigned int kDigitalOutputInterval = 1000;
   pinMode(kDigitalOutputPin, OUTPUT);
-  pinMode(led_gpio, OUTPUT);
+  // pinMode(led_gpio, OUTPUT);
   event_loop()->onRepeat(kDigitalOutputInterval, [kDigitalOutputPin]() {
     digitalWrite(kDigitalOutputPin, !digitalRead(kDigitalOutputPin));
-    digitalWrite(led_gpio, !digitalRead(led_gpio));
+    // digitalWrite(led_gpio, !digitalRead(led_gpio));
 
   });
 
